@@ -4,14 +4,14 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 8
-  productGUID: 6e8831434aff5415f9a12cbc44083eef
+  productGUID: 3a8984573b6d44decadf1ac29eacc6ec
   AndroidProfiler: 0
-  defaultScreenOrientation: 4
+  defaultScreenOrientation: 3
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: DefaultCompany
-  productName: Catch-King
+  productName: _2D v3
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenStyle: 0
@@ -53,7 +53,7 @@ PlayerSettings:
   forceSingleInstance: 0
   resizableWindow: 0
   useMacAppStoreValidation: 0
-  gpuSkinning: 0
+  gpuSkinning: 1
   graphicsJobs: 0
   xboxPIXTextureCapture: 0
   xboxEnableAvatar: 0
@@ -122,7 +122,7 @@ PlayerSettings:
     serializedVersion: 2
     m_Bits: 238
   iPhoneSdkVersion: 988
-  iPhoneTargetOSVersion: 24
+  iPhoneTargetOSVersion: 22
   tvOSSdkVersion: 0
   tvOSTargetOSVersion: 900
   tvOSRequireExtendedGameController: 0
@@ -181,9 +181,21 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 128
+      m_Height: 128
   m_BuildTargetBatching: []
-  m_BuildTargetGraphicsAPIs: []
+  m_BuildTargetGraphicsAPIs:
+  - m_BuildTarget: WindowsStandaloneSupport
+    m_APIs: 01000000
+    m_Automatic: 0
+  - m_BuildTarget: AndroidPlayer
+    m_APIs: 08000000
+    m_Automatic: 0
   webPlayerTemplate: APPLICATION:Default
   m_TemplateCustomTags: {}
   wiiUTitleID: 0005000011000000
@@ -273,7 +285,7 @@ PlayerSettings:
   ps4ApplicationParam4: 0
   ps4DownloadDataSize: 0
   ps4GarlicHeapSize: 2048
-  ps4Passcode: lQ9wQj99nsQzldVI5ZuGXbEWRK5RhRXd
+  ps4Passcode: qBlQ9wQj99nsQzldVI5ZuGXbEWRK5RhR
   ps4UseDebugIl2cppLibs: 0
   ps4pnSessions: 1
   ps4pnPresence: 1
@@ -317,7 +329,7 @@ PlayerSettings:
   psp2LiveAreaTrialPath: 
   psp2PatchChangeInfoPath: 
   psp2PatchOriginalPackage: 
-  psp2PackagePassword: CdG5nG5azdNMK66MuCV6GXi5xr84P2R3
+  psp2PackagePassword: XdCdG5nG5azdNMK66MuCV6GXi5xr84P2
   psp2KeystoneFile: 
   psp2MemoryExpansionMode: 0
   psp2DRMType: 0
@@ -348,7 +360,7 @@ PlayerSettings:
   psp2InfoBarColor: 0
   psp2UseDebugIl2cppLibs: 0
   psmSplashimage: {fileID: 0}
-  spritePackerPolicy: 
+  spritePackerPolicy: DefaultPackerPolicy
   scriptingDefineSymbols:
     1: CROSS_PLATFORM_INPUT
     4: CROSS_PLATFORM_INPUT;MOBILE_INPUT
@@ -357,26 +369,25 @@ PlayerSettings:
     17: MOBILE_INPUT
     20: MOBILE_INPUT
     22: MOBILE_INPUT
-  metroPackageName: Catch-King
+  metroPackageName: _2D v3
   metroPackageVersion: 
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
   metroCertificateIssuer: 
   metroCertificateNotAfter: 0000000000000000
-  metroApplicationDescription: Catch-King
+  metroApplicationDescription: _2D v3
   wsaImages: {}
   metroTileShortName: 
   metroCommandLineArgsFile: 
-  metroTileShowName: 0
+  metroTileShowName: 1
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
   metroWideTileShowName: 0
   metroDefaultTileSize: 1
   metroTileForegroundText: 1
-  metroTileBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21568628, a: 0}
-  metroSplashScreenBackgroundColor: {r: 0.12941177, g: 0.17254902, b: 0.21568628,
-    a: 1}
+  metroTileBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
+  metroSplashScreenBackgroundColor: {r: 0, g: 0, b: 0, a: 1}
   metroSplashScreenUseBackgroundColor: 0
   platformCapabilities: {}
   metroFTAName: 
@@ -427,47 +438,9 @@ PlayerSettings:
   intPropertyNames:
   - Android::ScriptingBackend
   - Standalone::ScriptingBackend
-  - WebPlayer::ScriptingBackend
   Android::ScriptingBackend: 0
   Standalone::ScriptingBackend: 0
-  WebPlayer::ScriptingBackend: 0
-  boolPropertyNames:
-  - Android::VR::enable
-  - Metro::VR::enable
-  - N3DS::VR::enable
-  - PS3::VR::enable
-  - PS4::VR::enable
-  - PSM::VR::enable
-  - PSP2::VR::enable
-  - SamsungTV::VR::enable
-  - Standalone::VR::enable
-  - Tizen::VR::enable
-  - WebGL::VR::enable
-  - WebPlayer::VR::enable
-  - WiiU::VR::enable
-  - Xbox360::VR::enable
-  - XboxOne::VR::enable
-  - XboxOne::enus
-  - iOS::VR::enable
-  - tvOS::VR::enable
-  Android::VR::enable: 0
-  Metro::VR::enable: 0
-  N3DS::VR::enable: 0
-  PS3::VR::enable: 0
-  PS4::VR::enable: 0
-  PSM::VR::enable: 0
-  PSP2::VR::enable: 0
-  SamsungTV::VR::enable: 0
-  Standalone::VR::enable: 0
-  Tizen::VR::enable: 0
-  WebGL::VR::enable: 0
-  WebPlayer::VR::enable: 0
-  WiiU::VR::enable: 0
-  Xbox360::VR::enable: 0
-  XboxOne::VR::enable: 0
-  XboxOne::enus: 1
-  iOS::VR::enable: 0
-  tvOS::VR::enable: 0
+  boolPropertyNames: []
   stringPropertyNames:
   - Analytics_ServiceEnabled::Analytics_ServiceEnabled
   - Build_ServiceEnabled::Build_ServiceEnabled
@@ -487,44 +460,7 @@ PlayerSettings:
   Purchasing_ServiceEnabled::Purchasing_ServiceEnabled: False
   UNet_ServiceEnabled::UNet_ServiceEnabled: False
   Unity_Ads_ServiceEnabled::Unity_Ads_ServiceEnabled: False
-  vectorPropertyNames:
-  - Android::VR::enabledDevices
-  - Metro::VR::enabledDevices
-  - N3DS::VR::enabledDevices
-  - PS3::VR::enabledDevices
-  - PS4::VR::enabledDevices
-  - PSM::VR::enabledDevices
-  - PSP2::VR::enabledDevices
-  - SamsungTV::VR::enabledDevices
-  - Standalone::VR::enabledDevices
-  - Tizen::VR::enabledDevices
-  - WebGL::VR::enabledDevices
-  - WebPlayer::VR::enabledDevices
-  - WiiU::VR::enabledDevices
-  - Xbox360::VR::enabledDevices
-  - XboxOne::VR::enabledDevices
-  - iOS::VR::enabledDevices
-  - tvOS::VR::enabledDevices
-  Android::VR::enabledDevices:
-  - Oculus
-  Metro::VR::enabledDevices: []
-  N3DS::VR::enabledDevices: []
-  PS3::VR::enabledDevices: []
-  PS4::VR::enabledDevices:
-  - PlayStationVR
-  PSM::VR::enabledDevices: []
-  PSP2::VR::enabledDevices: []
-  SamsungTV::VR::enabledDevices: []
-  Standalone::VR::enabledDevices:
-  - Oculus
-  Tizen::VR::enabledDevices: []
-  WebGL::VR::enabledDevices: []
-  WebPlayer::VR::enabledDevices: []
-  WiiU::VR::enabledDevices: []
-  Xbox360::VR::enabledDevices: []
-  XboxOne::VR::enabledDevices: []
-  iOS::VR::enabledDevices: []
-  tvOS::VR::enabledDevices: []
+  vectorPropertyNames: []
   cloudProjectId: 
   projectName: 
   organizationId: 
