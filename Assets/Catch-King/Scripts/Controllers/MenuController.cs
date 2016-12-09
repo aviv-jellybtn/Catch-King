@@ -4,6 +4,8 @@ using System.Collections;
 
 public class MenuController : MonoBehaviour
 {
+    public Players Player;
+
     [SerializeField] private string _charSelectionRight;
     [SerializeField] private string _charSelectionLeft;
     [SerializeField] private string _charReadyButton;

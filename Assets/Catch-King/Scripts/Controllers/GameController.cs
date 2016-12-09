@@ -4,9 +4,11 @@ using UnityEngine.SceneManagement;
 public class GameController : MonoSingleton<GameController>
 {
     private PlayerController[] _playerControllers;
+    [SerializeField] private MenuController[] _menuControllers;
 
     [SerializeField] private GameTimer _gameTimer;
     [SerializeField] private RoundOver _roundOver;
+    [SerializeField] private GameObject _startButton;
     [SerializeField] private GameObject _menuUIHolder;
     [SerializeField] private GameObject _gameUIHolder;
     [SerializeField] private GameObject _gameHolder;
@@ -38,11 +40,21 @@ public class GameController : MonoSingleton<GameController>
     public void IncrementReadyPlayer()
     {
         _readyPlayersCount++;
+
+        if (_readyPlayersCount >= 2)
+        {
+            _startButton.gameObject.SetActive(true);
+        }
     }
 
     public void DeductReadyPlayer()
     {
         _readyPlayersCount--;
+
+        if (_readyPlayersCount < 2)
+        {
+            _startButton.gameObject.SetActive(false);
+        }
     }
 
     public void RunnerCaught()

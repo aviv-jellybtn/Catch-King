@@ -107,7 +107,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &34536428
 RectTransform:
   m_ObjectHideFlags: 0
@@ -935,7 +935,7 @@ GameObject:
   - 114: {fileID: 437599488}
   - 114: {fileID: 437599490}
   m_Layer: 5
-  m_Name: Frame 1
+  m_Name: MenuController_P1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1007,6 +1007,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c5c89fe61c44c05a8b376fbd799b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: 0
   _charSelectionRight: CharSelectionRight_P1
   _charSelectionLeft: CharSelectionLeft_P1
   _charReadyButton: Jump_P1
@@ -1550,7 +1551,7 @@ GameObject:
   - 114: {fileID: 815056625}
   - 114: {fileID: 815056624}
   m_Layer: 5
-  m_Name: Frame 1 (2)
+  m_Name: MenuController_P3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1589,6 +1590,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c5c89fe61c44c05a8b376fbd799b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: 2
   _charSelectionRight: CharSelectionRight_P3
   _charSelectionLeft: CharSelectionLeft_P3
   _charReadyButton: Jump_P3
@@ -1988,18 +1990,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012330866004, guid: 9e93dcbbb61214eb6afa40c52059b384, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012330866004, guid: 9e93dcbbb61214eb6afa40c52059b384, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012330866004, guid: 9e93dcbbb61214eb6afa40c52059b384, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
+    - target: {fileID: 114000012928696792, guid: 9e93dcbbb61214eb6afa40c52059b384,
+        type: 2}
+      propertyPath: _characterUI
+      value: 
+      objectReference: {fileID: 1730688357}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9e93dcbbb61214eb6afa40c52059b384, type: 2}
   m_IsPrefabParent: 0
@@ -2078,18 +2073,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    - target: {fileID: 4000012552930474, guid: 607e04dd7a60f452f9f238257c26e6d0, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012552930474, guid: 607e04dd7a60f452f9f238257c26e6d0, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000012552930474, guid: 607e04dd7a60f452f9f238257c26e6d0, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
+    - target: {fileID: 114000013952263316, guid: 607e04dd7a60f452f9f238257c26e6d0,
+        type: 2}
+      propertyPath: _characterUI
+      value: 
+      objectReference: {fileID: 356429198}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 607e04dd7a60f452f9f238257c26e6d0, type: 2}
   m_IsPrefabParent: 0
@@ -2120,8 +2108,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c0023e1b245948f6be80845e1b16242, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _menuControllers:
+  - {fileID: 437599490}
+  - {fileID: 1393310126}
+  - {fileID: 815056624}
+  - {fileID: 1532366236}
   _gameTimer: {fileID: 1539503668}
   _roundOver: {fileID: 1194578184}
+  _startButton: {fileID: 34536427}
   _menuUIHolder: {fileID: 2121561952}
   _gameUIHolder: {fileID: 1119972136}
   _gameHolder: {fileID: 1348289661}
@@ -2332,18 +2326,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 4000010859461270, guid: d771f319abcd6418aba8647862e5cf7e, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010859461270, guid: d771f319abcd6418aba8647862e5cf7e, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000010859461270, guid: d771f319abcd6418aba8647862e5cf7e, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
+    - target: {fileID: 114000012633257364, guid: d771f319abcd6418aba8647862e5cf7e,
+        type: 2}
+      propertyPath: _characterUI
+      value: 
+      objectReference: {fileID: 1344688063}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d771f319abcd6418aba8647862e5cf7e, type: 2}
   m_IsPrefabParent: 0
@@ -2386,18 +2373,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
-    - target: {fileID: 4000013144723220, guid: e335aaab3580f418db0c9dcea23280f8, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013144723220, guid: e335aaab3580f418db0c9dcea23280f8, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 0.7
-      objectReference: {fileID: 0}
-    - target: {fileID: 4000013144723220, guid: e335aaab3580f418db0c9dcea23280f8, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 0.7
-      objectReference: {fileID: 0}
+    - target: {fileID: 114000013550521246, guid: e335aaab3580f418db0c9dcea23280f8,
+        type: 2}
+      propertyPath: _characterUI
+      value: 
+      objectReference: {fileID: 638391651}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: e335aaab3580f418db0c9dcea23280f8, type: 2}
   m_IsPrefabParent: 0
@@ -2861,7 +2841,7 @@ GameObject:
   - 114: {fileID: 1393310127}
   - 114: {fileID: 1393310126}
   m_Layer: 5
-  m_Name: Frame 1 (1)
+  m_Name: MenuController_P2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2900,6 +2880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c5c89fe61c44c05a8b376fbd799b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: 1
   _charSelectionRight: CharSelectionRight_P2
   _charSelectionLeft: CharSelectionLeft_P2
   _charReadyButton: Jump_P2
@@ -3050,7 +3031,7 @@ GameObject:
   - 114: {fileID: 1532366237}
   - 114: {fileID: 1532366236}
   m_Layer: 5
-  m_Name: Frame 1 (3)
+  m_Name: MenuController_P4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3089,6 +3070,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 37c5c89fe61c44c05a8b376fbd799b9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Player: 3
   _charSelectionRight: CharSelectionRight_P4
   _charSelectionLeft: CharSelectionLeft_P4
   _charReadyButton: Jump_P4

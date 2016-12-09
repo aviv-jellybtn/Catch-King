@@ -20,6 +20,11 @@ public class CharacterUI : MonoBehaviour
         _charImage.sprite = _characterSprites[_currentCharIndex];
     }
 
+    public Sprite GetSprite()
+    {
+        return _charImage.sprite;
+    }
+
     public void ChangeCharacter(bool positive)
     {
         if (positive)

@@ -29,6 +29,7 @@ public class PlayerController : MonoBehaviour
     private Frozen _frozen;
     private CharacterAnimation _characterAnimation;
 
+    [SerializeField] private CharacterUI _characterUI;
     [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
 
     [SerializeField] private string _horizontalAxisName;
@@ -36,6 +37,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem _catcherParticleSystem;
 
     private Rigidbody2D _rigidbody;
+
+    public Players Player;
 
     private void Awake()
     {
@@ -75,6 +78,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
+        _characterAnimation.SetSpriteRenderer(_characterUI.GetSprite());
         _playerType = playerType;
         gameObject.tag = _playerType.ToString();
     }
@@ -98,6 +102,10 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerStay2D(Collider2D other)
     {
         var frozen = other.gameObject.GetComponent<Frozen>();
+        if (_frozen.IsFrozen)
+        {
+            return;
+        }
 
         // Handle collision as runner
         if (_playerType == PlayerType.Runner)
@@ -161,7 +169,7 @@ public class PlayerController : MonoBehaviour
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.5f, m_WhatIsGround);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.1f, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject != gameObject)

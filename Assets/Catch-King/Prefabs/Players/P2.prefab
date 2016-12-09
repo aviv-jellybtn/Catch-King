@@ -35,7 +35,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000013895856260}
   - 212: {fileID: 212000010413036496}
-  - 114: {fileID: 114000013754756090}
   m_Layer: 0
   m_Name: Sprite
   m_TagString: Untagged
@@ -145,9 +144,9 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000011275241642}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 4000010211711464}
@@ -356,6 +355,7 @@ MonoBehaviour:
   _loopDuration: 0.37
   _loopAnimationTransform: {fileID: 4000013024053740}
   _jumpAnimationTransform: {fileID: 4000013689566742}
+  _spriteRenderer: {fileID: 212000010413036496}
 --- !u!114 &114000012633257364
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -376,23 +376,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: dafa1cc4eb8714341a7c595abfba35d8, type: 3}
   - {fileID: 8300000, guid: fc55d077383484ac0ad66aa17fcd746f, type: 3}
   - {fileID: 8300000, guid: 50a8d8a939a0f4e77a0dac6ecd2e582b, type: 3}
+  _characterUI: {fileID: 0}
+  m_WhatIsGround:
+    serializedVersion: 2
+    m_Bits: 4096
   _horizontalAxisName: HorizontalAxis_P2
   _jumpButtonName: Jump_P2
   _catcherParticleSystem: {fileID: 198000012654136590}
---- !u!114 &114000013754756090
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1000010624096356}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fb324ce195f74cf7ac3391166337a81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _loopDuration: 0.37
-  _loopAnimationTransform: {fileID: 0}
-  _jumpAnimationTransform: {fileID: 0}
+  Player: 1
 --- !u!198 &198000012654136590
 ParticleSystem:
   m_ObjectHideFlags: 1

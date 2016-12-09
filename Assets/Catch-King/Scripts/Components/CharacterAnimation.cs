@@ -11,6 +11,8 @@ public class CharacterAnimation : MonoBehaviour
     [SerializeField] private Transform _loopAnimationTransform;
     [SerializeField] private Transform _jumpAnimationTransform;
 
+    [SerializeField] private SpriteRenderer _spriteRenderer;
+
     private Tweener _xScaleTween;
     private Tweener _yScaleTween;
     private Sequence _jumpTween;
@@ -18,6 +20,16 @@ public class CharacterAnimation : MonoBehaviour
     private void Start()
     {
         ActivateCharacterAnimation();
+    }
+
+    public void SetSpriteRenderer(Sprite newSprite)
+    {
+        if (_spriteRenderer == null)
+        {
+            return;
+        }
+
+        _spriteRenderer.sprite = newSprite;
     }
 
     public void ActivateCharacterAnimation()
