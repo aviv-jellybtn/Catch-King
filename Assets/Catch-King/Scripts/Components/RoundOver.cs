@@ -9,10 +9,23 @@ public class RoundOver : MonoBehaviour
     public void ShowRoundOver(PlayerType winnerType)
     {
         gameObject.SetActive(true);
+        _roundOverText.enabled = true;
 
-        var text = string.Format("Round Over! \n {0} Won!", winnerType.ToString());
+        var winnerName = winnerType.ToString();
+        if (winnerType == PlayerType.Runner)
+        {
+            winnerName += "s";
+        }
+
+        var text = string.Format("Round Over! \n{0} Won!", winnerName);
         _roundOverText.text = text;
 
         _roundOverText.DOFade(1f, 1f);
+    }
+
+    public void DisableRoundOver()
+    {
+        _roundOverText.enabled = false;
+        _roundOverText.color = new Color(1, 1, 1, 0);
     }
 }   

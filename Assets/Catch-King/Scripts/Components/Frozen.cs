@@ -7,6 +7,8 @@ public class Frozen : MonoBehaviour
     public bool IsFrozen;
 
     [SerializeField] private float _durationTillSetFree = 3f;
+    [SerializeField] private AudioClip _frozenAudioClip;
+    [SerializeField] private AudioClip _unfreezeAudipClip;
 
     private GameObject canSetFreeUI;
     private GameObject frozenUI;
@@ -14,21 +16,34 @@ public class Frozen : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private Collider2D _collider;
 
+    private bool _shouldFrozen;
+
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _collider = GetComponent<Collider2D>();
     }
 
+    public void Init(bool shouldFrozen)
+    {
+        _shouldFrozen = shouldFrozen;
+    }
 
     public void ActivateFrozen()
     {
+        if (!_shouldFrozen)
+        {
+            return;
+        }
+
+        AudioSource.PlayClipAtPoint(_frozenAudioClip, transform.position);
+
         canSetFreeUI = Instantiate(Resources.Load("UI/SetFreeTimer_UI"), transform) as GameObject;
-        canSetFreeUI.transform.localPosition = new Vector3(0, 1f, 0);
+        canSetFreeUI.transform.localPosition = new Vector3(0f, 1f, 0f);
         var frozenSprite = canSetFreeUI.GetComponent<SpriteRenderer>();
 
         frozenUI = Instantiate(Resources.Load("UI/Frozen_UI"), transform) as GameObject;
-        frozenUI.transform.localPosition = Vector3.zero;
+        frozenUI.transform.localPosition = new Vector3(0f, 0.1f, 0f);
            
         IsFrozen = true;
         CanSetFree = false;
@@ -38,6 +53,11 @@ public class Frozen : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
+        if (!_shouldFrozen)
+        {
+            return;
+        }
+        
         if (_rigidbody.isKinematic && _collider.isTrigger)
         {
             return;
@@ -52,6 +72,13 @@ public class Frozen : MonoBehaviour
 
     public void DisableFrozen()
     {
+        if (!_shouldFrozen)
+        {
+            return;
+        }
+
+        AudioSource.PlayClipAtPoint(_unfreezeAudipClip, transform.position);
+
         _collider.isTrigger = false;
         _rigidbody.isKinematic = false;
 
@@ -62,6 +89,11 @@ public class Frozen : MonoBehaviour
 
     private void DoCanSetFree()
     {
+        if (!_shouldFrozen)
+        {
+            return;
+        }
+
         Destroy(canSetFreeUI);
         CanSetFree = true;
     }

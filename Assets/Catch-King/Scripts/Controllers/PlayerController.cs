@@ -23,14 +23,21 @@ public class PlayerController : MonoBehaviour
     private bool grounded = false;
     // Whether or not the player is grounded.
 
+
+
+    public Frozen Frozen { get { return _frozen; } }
+    public CharacterAnimation CharacterAnimation { get { return _characterAnimation; } }
+
     // The player's type
     private PlayerType _playerType;
 
     private Frozen _frozen;
     private CharacterAnimation _characterAnimation;
+    private TrailRenderer _trailRenderer;
 
     [SerializeField] private CharacterUI _characterUI;
-    [SerializeField] private LayerMask m_WhatIsGround;                  // A mask determining what is ground to the character
+    [SerializeField] private LayerMask m_WhatIsGround;
+    // A mask determining what is ground to the character
 
     [SerializeField] private string _horizontalAxisName;
     [SerializeField] private string _jumpButtonName;
@@ -40,38 +47,62 @@ public class PlayerController : MonoBehaviour
 
     public Players Player;
 
+    private Vector3 _originalPosition;
+    private Vector3 _originalScale;
+
     private void Awake()
     {
+        _originalPosition = transform.position;
+        _originalScale = transform.localScale;
+
         // Setting up references.
         _catcherParticleSystem.loop = false;
         groundCheck = transform.Find("groundCheck");
 
+        _trailRenderer = GetComponent<TrailRenderer>();
         _rigidbody = GetComponent<Rigidbody2D>();
         _frozen = GetComponent<Frozen>();
         _characterAnimation = GetComponentInChildren<CharacterAnimation>();
     }
 
+    public void ResetPlayer()
+    {
+        if (_frozen.IsFrozen)
+        {
+            _frozen.DisableFrozen();
+        }
+        _characterAnimation.SetOpacity(1f);
+        transform.position = _originalPosition;
+        transform.localScale = _originalScale;
+        _catcherParticleSystem.loop = false;
+        _trailRenderer.enabled = false;
+        facingRight = true;
+        enabled = true;
+    }
+
     public void SetPlayerType(PlayerType playerType)
     {
+        gameObject.SetActive(true);
+
         switch (playerType)
         {
             case PlayerType.Catcher:
                 {
-                    moveForce *= GameParameters.CATCHER_MASS;
-                    jumpForce *= GameParameters.CATCHER_MASS;
-                    _rigidbody.mass = GameParameters.CATCHER_MASS;
-                    maxSpeed = GameParameters.CATCHER_MAX_SPEED;
                     transform.localScale *= GameParameters.CATCHER_SIZE;
+                    maxSpeed = GameParameters.CATCHER_MAX_SPEED;
                     _catcherParticleSystem.loop = true;
+                    _catcherParticleSystem.Play();
+                    _trailRenderer.enabled = true;
                     gameObject.layer = GameParameters.CATCHER_LAYER;
-                    Destroy(_frozen);
+                    _frozen.Init(false);
                     break;
                 }
             case PlayerType.Runner:
                 {
-                    maxSpeed = GameParameters.RUNNER_MAX_SPEED;
                     transform.localScale *= GameParameters.RUNNER_SIZE;
+                    maxSpeed = GameParameters.RUNNER_MAX_SPEED;
                     gameObject.layer = GameParameters.RUNNER_LAYER;
+                    _frozen.Init(true);
                     break;
                 }
             default:
@@ -85,24 +116,58 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        var frozen = other.gameObject.GetComponent<Frozen>();
+        if (!GameController.instance.IsRoundRunning)
+        {
+            return;  
+        }
+
+        var playerController = other.gameObject.GetComponent<PlayerController>();
+        if (playerController == null)
+        {
+            return;
+        }
+
+        var frozen = playerController.Frozen;
+        if (frozen == null)
+        {
+            return;
+        }
 
         // Handle collision as catcher
         if (_playerType == PlayerType.Catcher)
         {
             if (other.gameObject.tag == GameParameters.RUNNER_TAG && frozen && !frozen.IsFrozen)
             {
+                ScoreController.UpdateScore(Player, true);
+
                 GameController.instance.RunnerCaught();
-                other.gameObject.GetComponent<Frozen>().ActivateFrozen();
-                other.gameObject.GetComponent<PlayerController>().enabled = false;
+                frozen.ActivateFrozen();
+                playerController.CharacterAnimation.SetOpacity(0.5f);
+                playerController.enabled = false;
             }
         }
     }
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        var frozen = other.gameObject.GetComponent<Frozen>();
+        if (!GameController.instance.IsRoundRunning)
+        {
+            return;  
+        }
+
         if (_frozen.IsFrozen)
+        {
+            return;
+        }
+
+        var playerController = other.gameObject.GetComponent<PlayerController>();
+        if (playerController == null)
+        {
+            return;
+        }
+
+        var frozen = playerController.Frozen;
+        if (frozen == null)
         {
             return;
         }
@@ -114,41 +179,16 @@ public class PlayerController : MonoBehaviour
             {
                 if (other.gameObject.GetComponent<Frozen>() && frozen.CanSetFree && frozen.IsFrozen)
                 {
+                    ScoreController.UpdateScore(Player, true);
+
                     GameController.instance.RunnerReleased();
-                    other.gameObject.GetComponent<Frozen>().DisableFrozen();
-                    other.gameObject.GetComponent<PlayerController>().enabled = true;
+                    frozen.DisableFrozen();
+                    playerController.CharacterAnimation.SetOpacity(1f);
+                    playerController.enabled = true;
                 }
             }
         }
     }
-
-    //    private void OnCollisionEnter2D(Collision2D other)
-    //    {
-    //        // Handle collision as catcher
-    //        if (_playerType == PlayerType.Catcher)
-    //        {
-    //            if (other.gameObject.tag == GameParameters.RUNNER_TAG && other.gameObject.GetComponent<Frozen>() && !other.gameObject.GetComponent<Frozen>().IsFrozen)
-    //            {
-    //                GameController.instance.RunnerCaught();
-    //                other.gameObject.GetComponent<Frozen>().ActivateFrozen();
-    //                other.gameObject.GetComponent<PlayerController>().enabled = false;
-    //            }
-    //        }
-    //
-    //        // Handle collision as runner
-    //        if (_playerType == PlayerType.Runner)
-    //        {
-    //            if (other.gameObject.tag == GameParameters.RUNNER_TAG)
-    //            {
-    //                if (other.gameObject.GetComponent<Frozen>() && other.gameObject.GetComponent<Frozen>().CanSetFreeze)
-    //                {
-    //                    GameController.instance.RunnerReleased();
-    //                    other.gameObject.GetComponent<Frozen>().DisableFrozen();
-    //                    other.gameObject.GetComponent<PlayerController>().enabled = true;
-    //                }
-    //            }
-    //        }
-    //    }
 
     private void Update()
     {
@@ -169,7 +209,7 @@ public class PlayerController : MonoBehaviour
 
         // The player is grounded if a circlecast to the groundcheck position hits anything designated as ground
         // This can be done using layers instead but Sample Assets will not overwrite your project settings.
-        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.1f, m_WhatIsGround);
+        Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.35f, m_WhatIsGround);
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].gameObject != gameObject)
@@ -177,20 +217,22 @@ public class PlayerController : MonoBehaviour
         }
 
         // Cache the horizontal input.
-        float horizontalAxis = Input.GetAxis(_horizontalAxisName);
+        float horizontalAxis = Input.GetAxisRaw(_horizontalAxisName);
+
+        var vectorDirection = GameController.instance.IsInverseControls ? Vector2.left : Vector2.right;
 
         // If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...
-        if (horizontalAxis * GetComponent<Rigidbody2D>().velocity.x < maxSpeed)
+        if (horizontalAxis * _rigidbody.velocity.x < maxSpeed)
         {
             // ... add a force to the player.
-            GetComponent<Rigidbody2D>().AddForce(Vector2.right * horizontalAxis * moveForce);
+            _rigidbody.AddForce(vectorDirection * horizontalAxis * moveForce);
         }
 
         // If the player's horizontal velocity is greater than the maxSpeed...
-        if (Mathf.Abs(GetComponent<Rigidbody2D>().velocity.x) > maxSpeed)
+        if (Mathf.Abs(_rigidbody.velocity.x) > maxSpeed)
         {
             // ... set the player's velocity to the maxSpeed in the x axis.
-            GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
+            _rigidbody.velocity = new Vector2(Mathf.Sign(_rigidbody.velocity.x) * maxSpeed, _rigidbody.velocity.y);
         }
 
         // If the input is moving the player right and the player is facing left...
@@ -214,7 +256,7 @@ public class PlayerController : MonoBehaviour
             AudioSource.PlayClipAtPoint(jumpClips[i], transform.position);
 
             // Add a vertical force to the player.
-            GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, jumpForce));
+            _rigidbody.AddForce(new Vector2(0f, jumpForce));
 
             // Make sure the player can't jump again until the jump conditions from Update are satisfied.
             jump = false;

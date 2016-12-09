@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
 public class MenuController : MonoBehaviour
 {
@@ -16,11 +15,11 @@ public class MenuController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetButtonDown(_charSelectionLeft))
+        if (Input.GetButtonDown(_charSelectionLeft) && !_readyText.enabled)
         {
             _characterUI.ChangeCharacter(false);
         }
-        if (Input.GetButtonDown(_charSelectionRight))
+        if (Input.GetButtonDown(_charSelectionRight) && !_readyText.enabled)
         {
             _characterUI.ChangeCharacter(true);
         }
@@ -31,11 +30,12 @@ public class MenuController : MonoBehaviour
 
             if (_readyText.enabled)
             {
-                GameController.instance.IncrementReadyPlayer();
+                AudioController.instance.PlayOneShot(AudioController.instance.CHAR_SELECTED_SOUND);
+                GameController.instance.IncrementReadyPlayer(Player);
             }
             else
             {
-                GameController.instance.DeductReadyPlayer();
+                GameController.instance.DeductReadyPlayer(Player);
             }
         }
 

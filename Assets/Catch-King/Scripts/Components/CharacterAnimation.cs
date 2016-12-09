@@ -22,6 +22,11 @@ public class CharacterAnimation : MonoBehaviour
         ActivateCharacterAnimation();
     }
 
+    public void SetOpacity(float alpha)
+    {
+        _spriteRenderer.color = new Color(1, 1, 1, alpha);
+    }
+
     public void SetSpriteRenderer(Sprite newSprite)
     {
         if (_spriteRenderer == null)
@@ -47,7 +52,7 @@ public class CharacterAnimation : MonoBehaviour
 
         _jumpTween = DOTween.Sequence();
         _jumpTween
-            .Append(_jumpAnimationTransform.DOScaleY(1.3f, 0.18f).SetEase(Ease.OutSine))
+            .Append(_jumpAnimationTransform.DOScaleY(1.4f, 0.18f).SetEase(Ease.OutSine))
             .Append(_jumpAnimationTransform.DOScaleY(1f, 0.18f).SetEase(Ease.InSine));
     }
 

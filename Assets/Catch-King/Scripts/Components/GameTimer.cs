@@ -12,6 +12,11 @@ public class GameTimer : MonoBehaviour
 
     public event Action<bool> RoundedEnded;
 
+    public float GetRoundTime()
+    {
+        return _roundTime;
+    }
+
     public void StartTimer()
     {
         gameObject.SetActive(true);
