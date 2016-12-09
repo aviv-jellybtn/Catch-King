@@ -2154,7 +2154,7 @@ MonoBehaviour:
   _charSelectionRight: CharSelectionRight_P3
   _charSelectionLeft: CharSelectionLeft_P3
   _charReadyButton: Jump_P3
-  _startButton: 
+  _startButton: StartButton_P3
   _characterUI: {fileID: 356429198}
   _readyText: {fileID: 778028619}
 --- !u!114 &815056625
@@ -4045,7 +4045,7 @@ MonoBehaviour:
   _charSelectionRight: CharSelectionRight_P4
   _charSelectionLeft: CharSelectionLeft_P4
   _charReadyButton: Jump_P4
-  _startButton: 
+  _startButton: StartButton_P4
   _characterUI: {fileID: 638391651}
   _readyText: {fileID: 160122611}
 --- !u!114 &1532366237
