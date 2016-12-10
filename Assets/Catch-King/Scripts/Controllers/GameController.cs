@@ -213,7 +213,7 @@ using System;
         _gameTimer.StartTimer();
 
         // Invoke a world event half way through the session
-        Invoke("InvokeWorldEvent", _gameTimer.GetRoundTime() / UnityEngine.Random.Range(1.5f, 2f));
+        Invoke("InvokeWorldEvent", _gameTimer.GetRoundTime() / UnityEngine.Random.Range(1.5f, 2.5f));
 
         // Assign round ended event
         _gameTimer.RoundedEnded += EndGame;

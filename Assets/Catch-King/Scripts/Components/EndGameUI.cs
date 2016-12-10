@@ -15,6 +15,8 @@ public class EndGameUI : MonoBehaviour
     [SerializeField] private Text _thirdPlaceText;
     [SerializeField] private Text _fourthPlaceText;
 
+    [SerializeField] private GameObject _endGameConffetti;
+
     private bool _p1Set;
     private bool _p2Set;
     private bool _p3Set;
@@ -23,6 +25,7 @@ public class EndGameUI : MonoBehaviour
     public void ShowEndGameLeaderboard()
     {
         gameObject.SetActive(true);
+        _endGameConffetti.SetActive(true);
 
         var p1Score = ScoreController.GetScore(Players.Player1);
         var p2Score = ScoreController.GetScore(Players.Player2);
