@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using System;
 
-public class GameController : MonoSingleton<GameController>
+ public class GameController : MonoSingleton<GameController>
 {
     [SerializeField] private PlayerController[] _playerControllers;
     [SerializeField] private MenuController[] _menuControllers;
@@ -213,7 +213,7 @@ public class GameController : MonoSingleton<GameController>
         _gameTimer.StartTimer();
 
         // Invoke a world event half way through the session
-        Invoke("InvokeWorldEvent", _gameTimer.GetRoundTime() / 2f);
+        Invoke("InvokeWorldEvent", _gameTimer.GetRoundTime() / UnityEngine.Random.Range(1.5f, 2f));
 
         // Assign round ended event
         _gameTimer.RoundedEnded += EndGame;
