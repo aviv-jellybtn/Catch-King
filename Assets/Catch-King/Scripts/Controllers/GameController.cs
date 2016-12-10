@@ -199,6 +199,7 @@ using System;
         AudioController.instance.PlayGame();
 
         // DISABLE CATCHER
+        _currentCatcherConroller.Rigidbody.isKinematic = true;
         _currentCatcherConroller.enabled = false;
     }
 
@@ -207,6 +208,7 @@ using System;
         IsRoundRunning = true;
 
         // ENABLE CATCHER
+        _currentCatcherConroller.Rigidbody.isKinematic = false;
         _currentCatcherConroller.enabled = true;
 
         // Start the round's timer

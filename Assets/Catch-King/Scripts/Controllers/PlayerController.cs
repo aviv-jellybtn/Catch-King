@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
 
 
     public Frozen Frozen { get { return _frozen; } }
+
     public CharacterAnimation CharacterAnimation { get { return _characterAnimation; } }
 
     // The player's type
@@ -44,6 +45,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem _catcherParticleSystem;
 
     private Rigidbody2D _rigidbody;
+
+    public Rigidbody2D Rigidbody { get { return _rigidbody; } }
 
     public Players Player;
 
